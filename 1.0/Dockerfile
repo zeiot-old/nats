@@ -1,4 +1,4 @@
-# Copyright 2016 Nicolas Lamirault <nicolas.lamirault@gmail.com>
+# Copyright 2016, 2017 Nicolas Lamirault <nicolas.lamirault@gmail.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,22 +12,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# VERSION 0.9.6
+# VERSION 1.0.0
 # AUTHOR:         Nicolas Lamirault <nicolas.lamirault@gmail.com>
 # DESCRIPTION:    zeiot/rpi-nats
 
 FROM resin/armv7hf-debian:stretch
 MAINTAINER Nicolas Lamirault <nicolas.lamirault@gmail.com>
 
-ENV GNATSD_VERSION 0.9.6
+ENV GNATSD_VERSION 1.0.0
 
 RUN apt-get update && apt-get install -y unzip
 
-ADD https://github.com/nats-io/gnatsd/releases/download/v${GNATSD_VERSION}/gnatsd-v${GNATSD_VERSION}-linux-arm.zip /gnatsd.zip
+ADD https://github.com/nats-io/gnatsd/releases/download/v${GNATSD_VERSION}/gnatsd-v${GNATSD_VERSION}-linux-arm7.zip /gnatsd.zip
 
 RUN unzip /gnatsd.zip && \
-    mv gnatsd-v${GNATSD_VERSION}-linux-arm/gnatsd /gnatsd && \
-    rm -fr gnatsd-v${GNATSD_VERSION}-linux-arm /gnatsd.zip && \
+    mv gnatsd-v${GNATSD_VERSION}-linux-arm7/gnatsd /gnatsd && \
+    rm -fr gnatsd-v${GNATSD_VERSION}-linux-arm7 /gnatsd.zip && \
     mkdir -p /etc/gnatsd && \
     mkdir -p /var/log/nats
 
