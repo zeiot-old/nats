@@ -36,24 +36,24 @@ help:
 
 .PHONY: build
 build:
-	@echo -e "$(OK_COLOR)[$(APP)] build $(NAMESPACE)/$(IMAGE):$(VERSION)$(NO_COLOR)"
-	@$(DOCKER) build -t $(NAMESPACE)/$(IMAGE):${VERSION} $(version)
+	@echo -e "$(OK_COLOR)[$(APP)] build $(NAMESPACE)/$(IMAGE):v$(VERSION)$(NO_COLOR)"
+	@$(DOCKER) build -t $(NAMESPACE)/$(IMAGE):v${VERSION} $(version)
 
 .PHONY: run
 run:
-	@echo -e "$(OK_COLOR)[$(APP)] run $(NAMESPACE)/$(IMAGE):$(VERSION)$(NO_COLOR)"
+	@echo -e "$(OK_COLOR)[$(APP)] run $(NAMESPACE)/$(IMAGE):v$(VERSION)$(NO_COLOR)"
 	$(DOCKER) run --rm=true -p 4222:4222 -p 8222:8222 -p 6222:6222 \
 		-v `pwd`/$(version)/:/etc/gnatsd \
 		-v `pwd`/log/:/var/log/nats \
-		$(NAMESPACE)/$(IMAGE):$(VERSION)
+		$(NAMESPACE)/$(IMAGE):v$(VERSION)
 
 .PHONY: debug
 debug:
-	@echo -e "$(OK_COLOR)[$(APP)] run $(NAMESPACE)/$(IMAGE):$(VERSION)$(NO_COLOR)"
+	@echo -e "$(OK_COLOR)[$(APP)] run $(NAMESPACE)/$(IMAGE):v$(VERSION)$(NO_COLOR)"
 	$(DOCKER) run -it --rm=true -p 4222:4222 -p 8222:8222 -p 6222:6222 \
 		-v `pwd`/$(version)/:/etc/gnatsd \
 		-v `pwd`/log/:/var/log/nats \
-		$(NAMESPACE)/$(IMAGE):$(VERSION) /bin/bash
+		$(NAMESPACE)/$(IMAGE):v$(VERSION) /bin/bash
 
 .PHONY: login
 login:
@@ -61,5 +61,5 @@ login:
 
 .PHONY: publish
 publish:
-	@echo -e "$(OK_COLOR)[$(APP)] Publish $(NAMESPACE)/$(IMAGE):$(VERSION)$(NO_COLOR)"
-	@$(DOCKER) push $(NAMESPACE)/$(IMAGE):$(VERSION)
+	@echo -e "$(OK_COLOR)[$(APP)] Publish $(NAMESPACE)/$(IMAGE):v$(VERSION)$(NO_COLOR)"
+	@$(DOCKER) push $(NAMESPACE)/$(IMAGE):v$(VERSION)

@@ -12,14 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# VERSION 1.0.0
+# VERSION 1.0.4
 # AUTHOR:         Nicolas Lamirault <nicolas.lamirault@gmail.com>
 # DESCRIPTION:    zeiot/rpi-nats
 
 FROM resin/armv7hf-debian:stretch
 MAINTAINER Nicolas Lamirault <nicolas.lamirault@gmail.com>
 
-ENV GNATSD_VERSION 1.0.0
+ENV GNATSD_VERSION 1.0.4
 
 RUN apt-get update && apt-get install -y unzip
 
