@@ -1,4 +1,4 @@
-# Copyright 2016, 2017 Nicolas Lamirault <nicolas.lamirault@gmail.com>
+# Copyright 2016-2018 Nicolas Lamirault <nicolas.lamirault@gmail.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,16 +12,23 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# VERSION 1.0.4
+# VERSION 1.0.6
 # AUTHOR:         Nicolas Lamirault <nicolas.lamirault@gmail.com>
 # DESCRIPTION:    zeiot/rpi-nats
 
-FROM resin/armv7hf-debian:stretch
-MAINTAINER Nicolas Lamirault <nicolas.lamirault@gmail.com>
+FROM resin/aarch64-debian:stretch
+LABEL summary="NATS server for ARM" \
+      description="NATS server for ARM devices" \
+      name="zeiot/nats" \
+      url="https://github.com/zeiot/nats" \
+      maintainer="Nicolas Lamirault <nicolas.lamirault@gmail.com>"
 
-ENV GNATSD_VERSION 1.0.4
+ENV GNATSD_VERSION 1.0.6
 
-RUN apt-get update && apt-get install -y unzip
+RUN [ "cross-build-start" ]
+
+RUN apt-get update \
+    && apt-get install -y unzip
 
 ADD https://github.com/nats-io/gnatsd/releases/download/v${GNATSD_VERSION}/gnatsd-v${GNATSD_VERSION}-linux-arm7.zip /gnatsd.zip
 
@@ -30,6 +37,8 @@ RUN unzip /gnatsd.zip && \
     rm -fr gnatsd-v${GNATSD_VERSION}-linux-arm7 /gnatsd.zip && \
     mkdir -p /etc/gnatsd && \
     mkdir -p /var/log/nats
+
+RUN [ "cross-build-end" ]
 
 VOLUME ["/etc/gnatsd", "/var/log/nats/" ]
 
