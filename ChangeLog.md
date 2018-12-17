@@ -1,6 +1,10 @@
 RPI Nats ChangeLog
 =================================
 
+# Version 1.1.0 (12/17/2018)
+
+- Update to 1.1.0
+
 # Version 1.0.0 (12/17/2018)
 
 - Update to 1.0.6
