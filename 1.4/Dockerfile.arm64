@@ -18,7 +18,7 @@
 
 FROM balenalib/aarch64-alpine:3.9
 # FROM balenalib/aarch64-debian:stretch
-FROM resin/aarch64-debian:stretch
+# FROM resin/aarch64-debian:stretch
 
 LABEL summary="NATS server for ARM64" \
       description="NATS server for ARM64 devices" \
@@ -30,8 +30,7 @@ ENV GNATSD_VERSION 1.4.1
 
 RUN [ "cross-build-start" ]
 
-RUN apt-get update \
-    && apt-get install -y unzip
+RUN apk add --no-cache unzip
 
 ADD https://github.com/nats-io/gnatsd/releases/download/v${GNATSD_VERSION}/gnatsd-v${GNATSD_VERSION}-linux-arm64.zip /gnatsd.zip
 
